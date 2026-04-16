@@ -1,240 +1,335 @@
-# 📊 Student Feedback Analysis (Q1–Q20)
+# 📊 Student Satisfaction Survey — Exploratory Data Analysis
 
-## 📁 Folder Name
-`teaching-learning-analysis`
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/Jupyter-Notebook-orange?style=for-the-badge&logo=jupyter&logoColor=white" />
+  <img src="https://img.shields.io/badge/Pandas-Data%20Analysis-150458?style=for-the-badge&logo=pandas&logoColor=white" />
+  <img src="https://img.shields.io/badge/Plotly-Interactive%20Viz-3F4F75?style=for-the-badge&logo=plotly&logoColor=white" />
+  <img src="https://img.shields.io/badge/Seaborn-Statistical%20Plots-4C72B0?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Status-Complete-brightgreen?style=for-the-badge" />
+</p>
 
-## 📝 Project Description
-This project presents a comprehensive analysis of student feedback data across multiple academic programs. It evaluates teaching quality, mentoring effectiveness, institutional support, and student development using survey responses (Questions 1–20).
-
-The goal is to identify patterns, highlight strengths, detect weak areas, and provide actionable insights to improve the overall teaching-learning experience.
-
----
-
-## 📌 Key Objectives
-- Analyze student satisfaction across courses
-- Evaluate teaching quality and mentoring effectiveness
-- Measure institutional support and opportunities
-- Identify high-performing and low-performing programs
-- Provide data-driven recommendations
+<p align="center">
+  A rigorous exploratory data analysis of an institutional student satisfaction survey, examining teaching quality, mentoring effectiveness, curriculum delivery, and overall learning experience across <strong>13 academic departments</strong> and <strong>20 structured questions</strong>.
+</p>
 
 ---
 
-# 📊 Analysis Summary
+## 📌 Table of Contents
 
-## 🔹 Q1–Q4: (Foundation Insights)
-- General perception of teaching quality is **positive (~3.5–4.5)**
-- Some variation exists across technical vs non-technical courses  
-- Early indicators show **stronger satisfaction in commerce and arts programs**
-
-✔️ *Conclusion:* Base teaching quality is good but inconsistent.
-
----
-
-## 🔹 Q5: Fairness of Internal Evaluation
-- **Range:** 3.41 – 4.765  
-- **Top:** Bachelor of Arts  
-- **Lowest:** B.Sc Computer Science  
-
-✔️ Fairness is generally high but varies by course.
+- [Overview](#-overview)
+- [Business Problem](#-business-problem)
+- [Project Workflow](#-project-workflow)
+- [Dataset Description](#-dataset-description)
+- [Survey Structure](#-survey-structure)
+- [Analysis Breakdown](#-analysis-breakdown)
+- [Key Findings & Insights](#-key-findings--insights)
+- [Technologies Used](#-technologies-used)
+- [Getting Started](#-getting-started)
+- [Recommendations](#-recommendations)
+- [Future Work](#-future-work)
+- [Contact](#-contact)
 
 ---
 
-## 🔹 Q6: Assignment Discussion
-- **Range:** 3.00 – 4.50  
-- **Top:** Banking & Insurance  
-- **Lowest:** MSc Physics  
+## 🔍 Overview
 
-✔️ Feedback culture is moderate; needs improvement in some programs.
+This project conducts a comprehensive **Exploratory Data Analysis (EDA)** on an academic institution's student satisfaction survey dataset. The survey captures student perceptions across 20 structured questions, covering dimensions such as:
 
----
+- Teaching quality and preparation
+- Mentorship and academic support
+- Institutional initiatives and student engagement
+- Curriculum coverage and learning outcomes
+- ICT adoption in classrooms
 
-## 🔹 Q7: Internship & Opportunities
-- **Range:** 2.335 – 4.50  
-- **Top:** Banking & Insurance  
-- **Lowest:** MSc Data Science, MSc Physics  
-
-✔️ Significant gap in career exposure for technical fields.
+The analysis surfaces actionable insights to help academic administrators, faculty, and policy-makers improve educational delivery across programs.
 
 ---
 
-## 🔹 Q8: Teaching & Mentoring Growth
-- **Range:** 2.00 – 4.675  
-- **Top:** Bachelor of Arts  
-- **Lowest:** B.Voc Food Tech, MSc Data Science  
+## 💼 Business Problem
 
-✔️ Mentoring quality is uneven across programs.
+> *"Which departments are underperforming in student satisfaction, and what specific teaching or institutional factors are driving dissatisfaction?"*
 
----
+Academic institutions invest heavily in faculty and infrastructure, yet student satisfaction often remains unmeasured at a granular level. This analysis answers:
 
-## 🔹 Q9: Learning Opportunities
-- **Range:** 3.00 – 4.585  
-- **Top:** MSc IT  
-- **Lowest:** MSc Data Science  
-
-✔️ Overall positive but lacks consistency.
+- Which courses score consistently high or low across the 20 survey dimensions?
+- Are there structural patterns (e.g., MSc programs vs. Bachelor programs) in satisfaction scores?
+- Which specific teaching behaviours — preparation, communication, feedback — need institutional attention?
+- Where should leadership prioritise intervention for maximum impact?
 
 ---
 
-## 🔹 Q10: Communication of Outcomes
-- **Range:** 3.00 – 4.75  
-- **Top:** MSc IT, BA  
-- **Lowest:** B.Voc Food Tech  
+## 🔄 Project Workflow
 
-✔️ Communication is strong but not standardized.
-
----
-
-## 🔹 Q11: Mentor Follow-up
-- **Range:** 2.50 – 4.50  
-- **Top:** BA, MSc Analytical Chemistry  
-- **Lowest:** MSc Physics  
-
-✔️ Mentorship effectiveness varies significantly.
-
----
-
-## 🔹 Q12: Use of Examples in Teaching
-- **Range:** 2.67 – 5.00  
-- **Top:** B.Voc Food Tech  
-- **Lowest:** MSc Data Science  
-
-✔️ Practical teaching is strong in some, weak in others.
-
----
-
-## 🔹 Q13: Identifying Strengths
-- **Range:** 1.665 – 4.470  
-- **Top:** BA  
-- **Lowest:** MSc Data Science  
-
-✔️ Personalized learning is lacking in technical programs.
-
----
-
-## 🔹 Q14: Identifying Weaknesses
-- **Range:** 2.835 – 4.543  
-- **Top:** BMS, BA  
-- **Lowest:** MSc Data Science, MA Psychology  
-
-✔️ Academic support systems need improvement.
-
----
-
-## 🔹 Q15: Student Engagement in Improvement
-- **Range:** 3.00 – 4.30  
-- **Top:** Banking & Insurance  
-- **Lowest:** B.Voc Food Tech, MSc Data Science  
-
-✔️ Moderate engagement; improvement needed.
+```
+Raw CSV Data (Student_Satisfaction_Survey.csv)
+         │
+         ▼
+  ┌─────────────────────────────────┐
+  │   1. Data Loading & Inspection  │  → df.head(), df.info(), df.tail()
+  └─────────────────────────────────┘
+         │
+         ▼
+  ┌─────────────────────────────────┐
+  │   2. Data Quality Assessment    │  → Null check, duplicate detection,
+  │                                 │    unique value validation, type audit
+  └─────────────────────────────────┘
+         │
+         ▼
+  ┌─────────────────────────────────┐
+  │   3. Statistical Summary        │  → df.describe(), nunique(), value counts
+  └─────────────────────────────────┘
+         │
+         ▼
+  ┌─────────────────────────────────┐
+  │   4. Aggregated EDA             │  → Dept-level feedback averages,
+  │                                 │    course distribution, rating summaries
+  └─────────────────────────────────┘
+         │
+         ▼
+  ┌─────────────────────────────────┐
+  │   5. Question-by-Question EDA   │  → Per-question groupby analysis
+  │      (Q1 – Q20)                 │    across all 13 departments
+  └─────────────────────────────────┘
+         │
+         ▼
+  ┌─────────────────────────────────┐
+  │   6. Visualisation              │  → Violin plots, bar charts,
+  │                                 │    pie charts, histograms
+  └─────────────────────────────────┘
+         │
+         ▼
+  ┌─────────────────────────────────┐
+  │   7. Observations & Insights    │  → Per-question textual analysis
+  │                                 │    with course-level breakdowns
+  └─────────────────────────────────┘
+```
 
 ---
 
-## 🔹 Q16: Student-Centered Learning
-- **Range:** 2.50 – 4.395  
-- **Top:** MSc Analytical Chemistry  
-- **Lowest:** MSc Physics  
+## 📊 Dataset Description
 
-✔️ Traditional teaching still dominates in some courses.
+| Attribute | Details |
+|-----------|---------|
+| **File** | `Student_Satisfaction_Survey.csv` |
+| **Encoding** | `latin-1` |
+| **Null Values** | None ✅ |
+| **Duplicates** | None ✅ |
+| **Survey Questions** | 20 |
+| **Departments Covered** | 13 |
 
----
+### Column Reference
 
-## 🔹 Q17: Extracurricular Encouragement
-- **Range:** 3.15 – 4.30  
-- **Top:** Banking & Insurance  
-- **Lowest:** B.Sc Computer Science  
+| Column | Description |
+|--------|-------------|
+| `Questions` | One of 20 survey questions asked to students |
+| `Basic Course` | Academic department / program (e.g., BMS, MSc IT, BA) |
+| `Total Configured` | Total students configured to give feedback |
+| `Total Feedback Given` | Actual number of students who submitted feedback |
+| `Average/ Percentage` | Mean satisfaction score for the question per department |
 
-✔️ Encouragement is decent but inconsistent.
+### Departments in the Dataset
 
----
-
-## 🔹 Q18: Skill Development (Employability)
-- **Range:** 2.00 – 4.75  
-- **Top:** MSc IT  
-- **Lowest:** B.Voc Food Tech  
-
-✔️ Strong focus in some programs, weak in others.
-
----
-
-## 🔹 Q19: ICT Tool Usage
-- **Range:** 2.785 – 4.535  
-- **Top:** MSc Computer Science  
-- **Lowest:** MA Psychology  
-
-✔️ Digital adoption varies significantly.
-
----
-
-## 🔹 Q20: Overall Teaching Quality
-- **Range:** 2.785 – 4.535  
-- **Top:** MSc Computer Science  
-- **Lowest:** MA Psychology  
-
-✔️ Overall perception is positive but inconsistent.
+| # | Department |
+|---|-----------|
+| 1 | Bachelor of Arts (BA) |
+| 2 | Bachelor of Commerce (B.Com) |
+| 3 | Bachelor of Commerce – Accounting & Finance (BAF) |
+| 4 | Bachelor of Commerce – Banking & Insurance (BBI) |
+| 5 | Bachelor of Management Studies (BMS) |
+| 6 | B.Sc. Computer Science |
+| 7 | B.Voc Food Technology |
+| 8 | MA Psychology |
+| 9 | MSc Analytical Chemistry |
+| 10 | MSc Data Science |
+| 11 | MSc Information Technology |
+| 12 | MSc Physics |
 
 ---
 
-# 📉 Key Insights
+## 📋 Survey Structure
 
-## ✅ Strengths
-- High-performing programs:
-  - Bachelor of Arts
-  - Banking & Insurance
-  - MSc Information Technology
-- Strong communication of outcomes
-- Good overall teaching satisfaction
+The 20 survey questions are grouped across the following thematic dimensions:
 
----
-
-## ⚠️ Areas for Improvement
-- MSc Data Science (consistently low across metrics)
-- MSc Physics (mentoring & engagement issues)
-- B.Voc Food Technology (high variance in responses)
-
----
-
-# 🚀 Recommendations
-
-## 🔍 1. Learn from Top Programs
-- Analyze high-performing courses
-- Replicate best teaching practices
+| Theme | Questions |
+|-------|-----------|
+| **Curriculum & Syllabus** | Q1 – Syllabus coverage |
+| **Teaching Quality** | Q2 – Teacher preparation, Q3 – Communication, Q4 – Teaching approach, Q12 – Use of examples |
+| **Evaluation & Feedback** | Q5 – Fairness of evaluation, Q6 – Assignment discussion |
+| **Mentorship** | Q11 – Mentor follow-up, Q13 – Identifying strengths, Q14 – Addressing weaknesses |
+| **Institutional Initiatives** | Q7 – Internships & field visits, Q9 – Learning opportunities, Q15 – Quality improvement engagement |
+| **Student Development** | Q8 – Cognitive/social/emotional growth, Q17 – Extracurricular encouragement, Q18 – Soft skills & employability |
+| **Learning Outcomes** | Q10 – Communication of course outcomes, Q16 – Student-centric methods |
+| **Technology in Teaching** | Q19 – ICT tool usage |
+| **Overall Quality** | Q20 – Overall teaching-learning quality |
 
 ---
 
-## 🛠️ 2. Improve Weak Areas
-- Strengthen mentorship programs
-- Increase practical and applied learning
-- Improve feedback systems
+## 🔬 Analysis Breakdown
+
+### Aggregated Analysis
+- **Average feedback given per department** — violin plot showing distribution spread
+- **Batch strength by course** — pie chart of student population distribution
+- **Average rating per department across all 20 questions** — bar chart with department comparison
+
+### Per-Question Drill-Down (Q1 – Q20)
+Each question is analysed using:
+```python
+question_df = df[df['Questions'] == '<question text>']
+avg = question_df.groupby('Basic Course')['Average/ Percentage'].mean()
+avg.agg(['min', 'max'])
+```
+Followed by a **histogram of score distribution** and **written observations** identifying high-performing and low-performing departments for each dimension.
 
 ---
 
-## 📢 3. Standardize Communication
-- Clearly define:
-  - Course outcomes
-  - Learning expectations
-  - Feedback cycles
+## 💡 Key Findings & Insights
+
+### 🏆 Consistently High-Performing Departments
+
+| Department | Notable Strengths |
+|-----------|------------------|
+| **Bachelor of Arts (BA)** | Top ratings in mentor follow-up (4.50), teaching approach, fairness of evaluation (4.77), cognitive/emotional growth (4.68), and weakness identification (4.53) |
+| **MSc Information Technology** | Highest overall average (4.35); leads in learning opportunities (4.59), employability development (4.75), and course outcome communication (4.75) |
+| **B.Com – Banking & Insurance** | Consistent top-3 finisher in syllabus coverage (4.70), internship promotion (4.50), extracurricular encouragement (4.30), and student engagement |
+| **MSc Analytical Chemistry** | Strong performance in student-centric methods (4.40) and mentor follow-up (4.36) |
+
+### ⚠️ Departments Requiring Intervention
+
+| Department | Primary Area of Concern | Score Range |
+|-----------|------------------------|-------------|
+| **MSc Data Science** | Lowest overall average (3.05); critical gaps in communication (3.17), use of examples (2.67), strength identification (1.67), and growth facilitation (2.33) | 1.67 – 3.67 |
+| **MSc Physics** | Mentor follow-up (2.50), student-centric methods (2.50), internship initiative (2.50) | 2.50 – 4.00 |
+| **B.Voc Food Technology** | Cognitive growth facilitation (2.00), employability skills (2.00), teaching-learning engagement (3.00) | 2.00 – 5.00 |
+| **MA Psychology** | ICT tool usage (2.79), weakness identification (2.92) | 2.79 – 4.30 |
+| **B.Sc. Computer Science** | Extracurricular encouragement (3.15), evaluation fairness (3.41) | 3.00 – 4.30 |
+
+### 📈 Score Range Summary
+
+| Metric | Value |
+|--------|-------|
+| **Highest** single-question score | 5.00 — B.Voc Food Technology (Teacher Preparation & Communication) |
+| **Lowest** single-question score | 1.665 — MSc Data Science (Identifying student strengths) |
+| **Widest variance** question | Q13 – Identifying student strengths (range: 1.665 → 4.470) |
+| **Most consistent** top performer | Bachelor of Arts |
+| **Most consistent** low performer | MSc Data Science |
+
+### 🔎 Notable Patterns
+
+- **MSc Data Science** is an outlier in nearly every dimension — despite being a technically advanced and high-demand program, student satisfaction is the lowest across the institution, warranting urgent curriculum and faculty review
+- **Bachelor of Arts** outperforms most STEM programs on qualitative teaching dimensions (mentoring, communication, approach), suggesting soft pedagogical skills may be more embedded in humanities faculty culture
+- **B.Voc Food Technology** presents a paradox: top scores in teacher preparedness (5.00) and ICT usage, but bottom scores in growth facilitation (2.00) and employability skill development (2.00) — strong content delivery but weak holistic student development
+- **Feedback participation rates** vary significantly across departments; Master's program cohorts are smaller, making their scores less statistically robust than Bachelor's programs
 
 ---
 
-## 💼 4. Enhance Career Support
-- Expand:
-  - Internship programs
-  - Industry collaborations
-  - Field exposure
+## 🛠️ Technologies Used
+
+| Category | Library / Tool | Purpose |
+|----------|---------------|---------|
+| Data Manipulation | `pandas`, `numpy` | Data loading, groupby aggregations, type handling |
+| Static Visualisation | `matplotlib`, `seaborn` | Histograms, bar charts, pie charts |
+| Interactive Visualisation | `plotly.express` | Violin plots, interactive department charts |
+| Warning Suppression | `warnings` | Clean notebook output |
+| Environment | `Jupyter Notebook` | Iterative analysis and documentation |
 
 ---
 
-## 💡 5. Promote Student-Centered Learning
-- Introduce:
-  - Case studies
-  - Real-world projects
-  - Problem-solving approaches
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Python 3.x
+- Jupyter Notebook or JupyterLab
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/TamurOne10/Students-Satisfaction-Survey-EDA.git
+
+# Navigate to the project directory
+cd Students-Satisfaction-Survey-EDA
+
+# Install required dependencies
+pip install pandas numpy matplotlib seaborn plotly
+```
+
+### Running the Notebook
+
+```bash
+# Launch Jupyter Notebook
+jupyter notebook Students-Satisfaction-Survey.ipynb
+```
+
+> **Note:** Ensure `Student_Satisfaction_Survey.csv` is in the same directory as the notebook. The file uses `latin-1` encoding — preserve this if you re-export the CSV.
 
 ---
 
-# 📌 Conclusion
-The institution demonstrates **strong overall teaching quality**, but **consistency across programs is the main challenge**.
+## ✅ Recommendations
 
-Improving mentoring, practical exposure, and student engagement will significantly enhance the overall learning experience and student satisfaction.
+Based on the EDA findings, the following actions are recommended for institutional leadership:
+
+**1. 🚨 Targeted Faculty Development for MSc Data Science**
+Implement immediate pedagogical support — coaching in communication, concept illustration, and student engagement techniques. Consider peer observation programmes pairing MSc Data Science faculty with high-performing colleagues from BA or MSc IT.
+
+**2. 📚 Replicate BA & BBI Best Practices Institutionally**
+Conduct structured knowledge-transfer workshops where faculty from Bachelor of Arts and B.Com (Banking & Insurance) share mentoring frameworks and teaching approaches with underperforming departments.
+
+**3. 🧑‍🏫 Address MSc Physics Mentorship Gap**
+The consistently low mentor follow-up score (2.50) suggests structural mentoring is absent. Introduce formal mentoring frameworks with scheduled task check-ins, progress tracking, and accountability mechanisms.
+
+**4. 🌱 Holistic Development Review for B.Voc Food Technology**
+Strong content delivery does not translate to career readiness. Integrate structured soft skills modules, employability workshops, industry exposure, and growth-oriented activities into the program curriculum.
+
+**5. 💻 Standardise ICT Usage Across All Programs**
+Departments like MA Psychology (2.79) and B.Com (2.98) lag in ICT adoption. Mandate basic ICT training for faculty and ensure infrastructure (projectors, multimedia tools) is available and utilised in all classrooms.
+
+**6. 📊 Improve Survey Participation for Master's Programs**
+Smaller cohort sizes reduce statistical reliability for Master's program insights. Implement structured, incentivised feedback collection to ensure representative data in future survey cycles.
 
 ---
+
+## 🔮 Future Work
+
+- [ ] Conduct **statistical significance testing** (ANOVA / t-tests) to validate observed differences between departments
+- [ ] Build an **interactive institutional dashboard** using Streamlit or Power BI for administrative stakeholders
+- [ ] Perform **year-over-year trend analysis** if historical survey data across multiple academic years is available
+- [ ] Apply **clustering** (K-Means / Hierarchical) to group departments by overall satisfaction profile
+- [ ] Incorporate **open-ended feedback responses** via NLP sentiment analysis
+- [ ] Expand analysis to **faculty-level granularity** if individual instructor data becomes available
+- [ ] Create **automated per-department scorecards** for distribution to department heads each semester
+
+---
+
+## 🤝 Contributing
+
+Contributions and suggestions are welcome! To contribute:
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/YourFeature`)
+3. Commit your changes (`git commit -m 'Add: description of change'`)
+4. Push to the branch (`git push origin feature/YourFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** — free to use, modify, and distribute with attribution.
+
+---
+
+## 📬 Contact
+
+**Tamoor Abbas**
+
+[![Email](https://img.shields.io/badge/Email-Tamur110%40gmail.com-red?style=flat-square&logo=gmail)](mailto:Tamur110@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Tamoor%20Abbas-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/tamoor-abbas)
+[![GitHub](https://img.shields.io/badge/GitHub-TamurOne10-black?style=flat-square&logo=github)](https://github.com/TamurOne10)
+
+---
+
+<p align="center">
+  ⭐ If this project added value to your work, please consider giving it a star!
+</p>
