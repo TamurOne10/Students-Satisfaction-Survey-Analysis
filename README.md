@@ -30,6 +30,7 @@
 - [Future Work](#-future-work)
 - [Contact](#-contact)
 
+🔗 Live Report: https://tamurone10.github.io/Students-Satisfaction-Survey-Analysis/
 ---
 
 ## 🔍 Overview
